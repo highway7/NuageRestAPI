@@ -1,0 +1,982 @@
+
+
+
+Nauge API Rest Call Guide
+
+
+
+
+
+
+
+
+Authenticate
+1. Get API key
+Note: the authorization code is base64 encoding of “username: password”, which in the following case is base64 encoding of “csproot: telus123”, and we get  ”Y3Nwcm9vdDp0ZWx1czEyMw==”.
+URL & Request type
+GET https://209.91.90.135:8443/nuage/api/v3_2/me
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDp0ZWx1czEyMw==
+Values
+
+response
+200 OK
+{
+"firstName": "csproot"
+"lastName": "csproot"
+"userName": "csproot"
+"email": "csproot@CSP.com"
+"mobileNumber": null
+"password": null
+"role": "CSPROOT"
+"enterpriseName": "CSP"
+"avatarType": null
+"avatarData": null
+"licenseCapabilities":  "ENCRYPTION_ENABLED"
+"entityScope": null
+"externalId": null
+"ID": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"APIKey": "8ef7dcfc-1100-49d4-9ad9-37ac1860fc32"
+"APIKeyExpiry": 1456245344728
+"enterpriseID": "76046673-d0ea-4a67-b6af-2829952f0812"
+"externalID": null
+}
+
+
+
+
+
+
+
+
+
+
+
+
+2. Use the API key to authenticate and get the list of enterprises
+Note: the authorization code is base64 encoding of “username: API key”, which in the following example is base64 encoding of “csproot:8ef7dcfc-1100-49d4-9ad9-37ac1860fc32”, and we get “Y3Nwcm9vdDogOGVmN2RjZmMtMTEwMC00OWQ0LTlhZDktMzdhYzE4NjBmYzMyDQo=”.
+URL & Request Type
+GET https://209.91.90.135:8443/nuage/api/v3_2/enterprises/
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDo4ZWY3ZGNmYy0xMTAwLTQ5ZDQtOWFkOS0zN2FjMTg2MGZjMzI=
+Values
+
+response
+200: OK
+{
+"children": null
+"parentType": null
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1456165943000
+"creationDate": 1456165943000
+"name": "NewOrg1"
+"description": null
+"avatarType": null
+"avatarData": null
+"floatingIPsQuota": 16
+"floatingIPsUsed": 0
+"allowTrustedForwardingClass": false
+"allowAdvancedQOSConfiguration": false
+"allowedForwardingClasses": "H"
+"allowGatewayManagement": false
+"encryptionManagementMode": "DISABLED"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "f2dcec7d-1e2b-4b92-b714-a6c3c63c1b3a"
+"parentID": null
+"externalID": null
+"customerID": 10006
+"DHCPLeaseInterval": 24
+"enterpriseProfileID": "f1e5eb19-c67a-4651-90c1-3f84e23e1d36"
+"receiveMultiCastListID": "081169f6-cb2f-4c6e-8e94-b701224a5141"
+"sendMultiCastListID": "738446cc-026f-488f-9718-b13f4390857b"
+"associatedGroupKeyEncryptionProfileID": "c2c2773f-723c-4d8e-a266-b94e87b60507"
+"associatedEnterpriseSecurityID": "4d78f06a-9f06-405b-a0d8-2add5aa9d07e"
+"associatedKeyServerMonitorID": "99f9720b-6be0-4582-9aac-7b5859808968"
+"LDAPEnabled": false
+"LDAPAuthorizationEnabled": false
+} 
+{
+"children": null
+"parentType": null
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1453153607000
+"creationDate": 1453153607000
+"name": "org_grace"
+"description": "portal dev"
+"avatarType": null
+"avatarData": null
+"floatingIPsQuota": 16
+"floatingIPsUsed": 0
+"allowTrustedForwardingClass": false
+"allowAdvancedQOSConfiguration": false
+"allowedForwardingClasses": "H"
+"allowGatewayManagement": false
+"encryptionManagementMode": "DISABLED"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "3338ae3e-2cf7-4c70-a3ca-873e0de95bb5"
+"parentID": null
+"externalID": null
+"customerID": 10005
+"DHCPLeaseInterval": 24
+"enterpriseProfileID": "f1e5eb19-c67a-4651-90c1-3f84e23e1d36"
+"receiveMultiCastListID": "081169f6-cb2f-4c6e-8e94-b701224a5141"
+"sendMultiCastListID": "738446cc-026f-488f-9718-b13f4390857b"
+"associatedGroupKeyEncryptionProfileID": "3b88afee-bf57-4667-b4d8-cfa7a70b9e56"
+"associatedEnterpriseSecurityID": "99b7f491-4da9-459c-abd1-41905b2498eb"
+"associatedKeyServerMonitorID": "b493b3dc-3feb-427c-8cae-5e8398cf48ef"
+"LDAPEnabled": false
+"LDAPAuthorizationEnabled": false
+} 
+{
+"children": null
+"parentType": null
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1450929151000
+"creationDate": 1450929151000
+"name": "org_ml"
+"description": null
+"avatarType": null
+"avatarData": null
+"floatingIPsQuota": 100
+"floatingIPsUsed": 0
+"allowTrustedForwardingClass": true
+"allowAdvancedQOSConfiguration": true
+"allowedForwardingClasses": "A"  "B" "C" "D""E" "F""G" "H"
+"allowGatewayManagement": false
+"encryptionManagementMode": "DISABLED"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "14582b65-f8fe-4a5a-884d-2893a8e88650"
+"parentID": null
+"externalID": null
+"customerID": 10004
+"DHCPLeaseInterval": 24
+"enterpriseProfileID": "d2072ea2-e14b-4b2d-b478-a1ba97c156d9"
+"receiveMultiCastListID": "6082bfcb-9a43-47eb-96d3-a4f6baf67f63"
+"sendMultiCastListID": "c76f3503-57d6-4126-a40a-853f85c4900e"
+"associatedGroupKeyEncryptionProfileID": "ed28bb98-82b6-49d4-8b11-23d7ff4ca4a8"
+"associatedEnterpriseSecurityID": "59dffa38-2445-4618-9cda-51efbcba9b9e"
+"associatedKeyServerMonitorID": "b8b55d6f-942a-4316-8cf1-bd0c3508a4fe"
+"LDAPEnabled": false
+"LDAPAuthorizationEnabled": false
+}
+
+
+Add new enterprises
+
+1. Authenticate and get the API key
+2. Create enterprises
+URL & Request type
+POST https://209.91.90.135:8443/nuage/api/v3_2/enterprises/
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDo4ZWY3ZGNmYy0xMTAwLTQ5ZDQtOWFkOS0zN2FjMTg2MGZjMzI=
+Content-Type: application/json
+Values
+    {
+      		"allowAdvancedQOSConfiguration": false,
+      		"allowGatewayManagement": false,
+      		"allowTrustedForwardingClass": null,
+      		"allowedForwardingClasses": null,
+      		"associatedEnterpriseSecurityID": null,
+      		"associatedGroupKeyEncryptionProfileID": null,
+      		"associatedKeyServerMonitorID": null,
+      		"avatarData": null,
+      		"avatarType": null,
+      		"customerID": null,
+      		"description" : null,
+      		"DHCPLeaseInterval": null,
+      		"enterpriseProfileID": null,
+      		"floatingIPsQuota": null,
+      		"floatingIPsUsed": null,
+     		"LDAPAuthorizationEnabled": false,
+     		"LDAPEnabled": false,
+      		"name" : "NewOrg1",
+      		"receiveMultiCastListID" : null,
+      		"sendMultiCastListID" : null
+}
+response
+ 201: Created
+{
+"children": null
+"parentType": null
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1456165943100
+"creationDate": 1456165943100
+"name": "NewOrg1"
+"description": null
+"avatarType": null
+"avatarData": null
+"floatingIPsQuota": 16
+"floatingIPsUsed": 0
+"allowTrustedForwardingClass": false
+"allowAdvancedQOSConfiguration": false
+"allowedForwardingClasses": "H"
+"allowGatewayManagement": false
+"encryptionManagementMode": "DISABLED"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "f2dcec7d-1e2b-4b92-b714-a6c3c63c1b3a"
+"parentID": null
+"externalID": null
+"customerID": 10006
+"DHCPLeaseInterval": 24
+"enterpriseProfileID": "f1e5eb19-c67a-4651-90c1-3f84e23e1d36"
+"receiveMultiCastListID": "081169f6-cb2f-4c6e-8e94-b701224a5141"
+"sendMultiCastListID": "738446cc-026f-488f-9718-b13f4390857b"
+"associatedGroupKeyEncryptionProfileID": "c2c2773f-723c-4d8e-a266-b94e87b60507"
+"associatedEnterpriseSecurityID": "4d78f06a-9f06-405b-a0d8-2add5aa9d07e"
+"associatedKeyServerMonitorID": "99f9720b-6be0-4582-9aac-7b5859808968"
+"LDAPEnabled": false
+"LDAPAuthorizationEnabled": false
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Create Domain Template 
+1.Authenticate and get the API key
+2. Get enterprise ID
+3.Create domain template
+
+
+
+URL & Request type
+POST
+https://209.91.90.135:8443/nuage/api/v3_2/enterprises/f2dcec7d-1e2b-4b92-b714-a6c3c63c1b3a/domaintemplates
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDo4ZWY3ZGNmYy0xMTAwLTQ5ZDQtOWFkOS0zN2FjMTg2MGZjMzI=
+Content-Type: application/json
+Values
+{
+"associatedMulticastChannelMapID"	: null,
+"description" : "New Domain Template",
+"encryption" : "DISABLED",
+"multicast" : "DISABLED",
+"name" : "NewdomainTemplate",
+"policyChangeStatus" : null
+}
+response
+201: Created
+{
+"children": null
+"parentType": "enterprise"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1456168382087
+"creationDate": 1456168382087
+"name": "NewdomainTemplate"
+"description": "New Domain Template"
+"policyChangeStatus": null
+"encryption": "DISABLED"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "766594cc-a1c8-4c1b-b285-6f5fe8a1ff3b"
+"parentID": "f2dcec7d-1e2b-4b92-b714-a6c3c63c1b3a"
+"externalID": null
+"multicast": "DISABLED"
+"associatedMulticastChannelMapID": null
+}
+
+
+
+
+Add Domain
+1. Authenticate and get the API key
+2. Get enterprise ID and template ID from get enterprises and get domainTemplate request. Note that the template ID should be the same as the ID of domainTemplate 
+       3. Create domain 
+URL & Request type
+POST
+https://209.91.90.135:8443/nuage/api/v3_2/enterprises/f2dcec7d-1e2b-4b92-b714-a6c3c63c1b3a/domains
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDo4ZWY3ZGNmYy0xMTAwLTQ5ZDQtOWFkOS0zN2FjMTg2MGZjMzI=
+Content-Type: application/json
+Values
+{
+    "maintenanceMode": "DISABLED",
+    "templateID": "766594cc-a1c8-4c1b-b285-6f5fe8a1ff3b",
+    "customerID": null,
+    "serviceID": null,
+    "routeTarget": null,
+    "routeDistinguisher": null,
+    "description": "Python Test3",
+    "name": "NewDomain",
+    "owner": null,
+    "parentType": null,
+    "parentID": null,
+    "externalID": null,
+    "ID": null
+}
+response
+201: Created
+{
+"children": null
+"parentType": "enterprise"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1456169140671
+"creationDate": 1456169140671
+"routeDistinguisher": "65534:2462"
+"routeTarget": "65534:25613"
+"name": "NewDomain"
+"description": "Python Test3"
+"maintenanceMode": "DISABLED"
+"dhcpServerAddresses": null
+"underlayEnabled": "DISABLED"
+"applicationDeploymentPolicy": "NONE"
+"policyChangeStatus": null
+"backHaulRouteDistinguisher": "65534:19111"
+"backHaulRouteTarget": "65534:34191"
+"backHaulVNID": 152963
+"importRouteTarget": "65534:25613"
+"exportRouteTarget": "65534:25613"
+"encryption": "DISABLED"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "44008b43-21af-47f9-b1f5-c6bd09e1fbca"
+"parentID": "f2dcec7d-1e2b-4b92-b714-a6c3c63c1b3a"
+"externalID": null
+"serviceID": 20029
+"customerID": 10006
+"DHCPBehavior": "CONSUME"
+"DHCPServerAddress": null
+"secondaryDHCPServerAddress": null
+"labelID": 9
+"multicast": "DISABLED"
+"PATEnabled": "DISABLED"
+"associatedMulticastChannelMapID": null
+"stretched": false
+"tunnelType": "VXLAN"
+"ECMPCount": 1
+"templateID": "766594cc-a1c8-4c1b-b285-6f5fe8a1ff3b"
+"uplinkPreference": "PRIMARY_SECONDARY"
+"globalRoutingEnabled": false
+"leakingEnabled": false
+"permittedAction": null
+}
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add Zone
+1. Authenticate and get the API key
+2. Get enterprise ID and corresponding domain ID
+3. Add Zone
+URL & Request type
+POST
+https://209.91.90.135:8443/nuage/api/v3_2/domains/44008b43-21af-47f9-b1f5-c6bd09e1fbca/zones
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDo4ZWY3ZGNmYy0xMTAwLTQ5ZDQtOWFkOS0zN2FjMTg2MGZjMzI=
+Content-Type: application/json
+Values
+{
+    "maintenanceMode": "DISABLED",
+    "templateID": null,
+    "customerID": null,
+    "serviceID": null,
+    "routeTarget": null,
+    "routeDistinguisher": null,
+    "description": "API Test1",
+    "name": "zone1",
+    "owner": null,
+    "parentType": null,
+    "parentID": null,
+    "externalID": null,
+    "ID": null
+}
+response
+201: Created
+{
+"children": null
+"parentType": "domain"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1456169678348
+"creationDate": 1456169678348
+"address": null
+"netmask": null
+"name": "zone1"
+"description": "API Test1"
+"maintenanceMode": "DISABLED"
+"publicZone": false
+"encryption": "INHERITED"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "eb9c8f01-4e23-4fb3-a16b-62339aea4b2d"
+"parentID": "44008b43-21af-47f9-b1f5-c6bd09e1fbca"
+"externalID": null
+"IPType": "IPV4"
+"numberOfHostsInSubnets": 0
+"associatedApplicationObjectType": null
+"associatedApplicationObjectID": null
+"associatedApplicationID": null
+"templateID": null
+"policyGroupID": 12
+"multicast": "INHERITED"
+"associatedMulticastChannelMapID": null
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Add Subnets
+1. Authenticate and get the API key
+2. Get enterprise ID and corresponding domain ID, then get the zone ID
+3. Add Subnet
+URL & Request type
+POST
+https://209.91.90.135:8443/nuage/api/v3_2/zones/eb9c8f01-4e23-4fb3-a16b-62339aea4b2d/subnets
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDo4ZWY3ZGNmYy0xMTAwLTQ5ZDQtOWFkOS0zN2FjMTg2MGZjMzI=
+Content-Type: application/json
+Values
+{
+	"splitSubnet": null,
+	"proxyARP": null,
+	"netmask": "255.255.255.0",
+	"name": "subnet1",
+	"multicast": "INHERITED",
+	"IPType": "IPV4",
+	"gateway": "10.1.1.1",
+	"description": null,
+	"associatedMulticastChannelMapID": null,
+	"address": "10.1.1.0",
+	"parentType": null,
+	"parentID": null,
+	"owner": null,
+	"ID": null,
+	"externalID": null
+	}
+response
+201: Created
+{
+"children": null
+"parentType": "zone"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1456169931361
+"creationDate": 1456169931361
+"address": "10.1.1.0"
+"netmask": "255.255.255.0"
+"name": "subnet1"
+"gateway": "10.1.1.1"
+"description": null
+"maintenanceMode": "DISABLED"
+"routeDistinguisher": "65534:11382"
+"routeTarget": "65534:24144"
+"vnId": 991047
+"underlayEnabled": "INHERITED"
+"splitSubnet": false
+"encryption": "INHERITED"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "69173861-bfed-4036-b549-bc8ab027ff9f"
+"parentID": "eb9c8f01-4e23-4fb3-a16b-62339aea4b2d"
+"externalID": null
+"IPType": "IPV4"
+"serviceID": 20031
+"associatedApplicationObjectType": null
+"associatedApplicationObjectID": null
+"associatedApplicationID": null
+"gatewayMACAddress": "68:54:ED:00:00:01"
+"PATEnabled": "INHERITED"
+"policyGroupID": 12
+"public": false
+"templateID": null
+"associatedSharedNetworkResourceID": null
+"proxyARP": false
+"multicast": "INHERITED"
+"associatedMulticastChannelMapID": null
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add Bridge Vports
+1. Authenticate and get the API key
+2. Get enterprise ID, then get corresponding domain ID, then get the zone ID, then get the subnet ID
+3. Get the NSGgateways of the enterprise
+URL & Request type
+GET https://209.91.90.135:8443/nuage/api/v3_2/enterprises/3338ae3e-2cf7-4c70-a3ca-873e0de95bb5/nsgateways
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDp0ZWx1czEyMw==
+Values
+
+response
+200 OK0:  
+{
+"children": null
+"parentType": "enterprise"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1453153758000
+"creationDate": 1453153758000
+"bootstrapStatus": "NOTIFICATION_APP_REQ_SENT"
+"personality": "NSG"
+"ports": null
+"pending": false
+"enterpriseID": "3338ae3e-2cf7-4c70-a3ca-873e0de95bb5"
+"name": "nsg1"
+"description": null
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "04d72557-6fff-400b-9643-0ec2dbba3f58"
+"parentID": "3338ae3e-2cf7-4c70-a3ca-873e0de95bb5"
+"externalID": null
+"bootstrapID": "181b39a5-7e9a-450b-bd41-30db45c14431"
+"locationID": "cb6fd349-ed88-4963-8aae-c0d20d08b03c"
+"configurationReloadState": "UNKNOWN"
+"configurationStatus": "UNKNOWN"
+"NATTraversalEnabled": false
+"datapathID": "0B1C9A4D"
+"associatedGatewaySecurityID": "a0542481-9a39-41e2-9abf-7a678405e8da"
+"associatedGatewaySecurityProfileID": "b7bb24e1-7c1b-4c39-9070-84a9e489bb21"
+"templateID": "f20a7603-b0a1-45aa-aa40-439d0b6f68d5"
+"permittedAction": "ALL"
+"autoDiscGatewayID": null
+"redundancyGroupID": null
+"systemID": "11.28.154.77"
+} 
+{
+"children": null
+"parentType": "enterprise"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1455286586000
+"creationDate": 1455286586000
+"bootstrapStatus": "NOTIFICATION_APP_REQ_SENT"
+"personality": "NSG"
+"ports": null
+"pending": false
+"enterpriseID": "3338ae3e-2cf7-4c70-a3ca-873e0de95bb5"
+"name": "nsg2"
+"description": null
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "62ffa615-2e66-42b0-b506-c6d0e71943a2"
+"parentID": "3338ae3e-2cf7-4c70-a3ca-873e0de95bb5"
+"externalID": null
+"bootstrapID": "ab1eb259-6dda-4b9c-971c-6e0204b232e6"
+"locationID": "bb752fac-b605-45dc-ad89-37a652173377"
+"configurationReloadState": "UNKNOWN"
+"configurationStatus": "UNKNOWN"
+"NATTraversalEnabled": true
+"datapathID": "8DCE66C6"
+"associatedGatewaySecurityID": "4bc671ea-f4cf-492d-a643-9534ee647321"
+"associatedGatewaySecurityProfileID": "ff60b4ab-950c-41d3-bb26-ef0ae9f69e46"
+"templateID": "f20a7603-b0a1-45aa-aa40-439d0b6f68d5"
+"permittedAction": "ALL"
+"autoDiscGatewayID": null
+"redundancyGroupID": null
+"systemID": "141.206.102.198"
+}
+
+
+
+
+
+
+
+
+2. Get NSPorts ID of the NSG gateway
+URL & Request type
+GET https://209.91.90.135:8443/nuage/api/v3_2/nsgateways/62ffa615-2e66-42b0-b506-c6d0e71943a2/nsports
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDp0ZWx1czEyMw==
+Values
+
+response
+200 OK
+{
+"children": null
+"parentType": "nsgateway"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1455286586000
+"creationDate": 1455286586000
+"name": "Port1-WAN"
+"physicalName": "port1"
+"portType": "NETWORK"
+"associatedRedundantPortID": null
+"status": "INITIALIZED"
+"userMnemonic": null
+"useUserMnemonic": false
+"description": null
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "6c8a82dd-8604-4e4c-b53c-9fe11531574c"
+"parentID": "62ffa615-2e66-42b0-b506-c6d0e71943a2"
+"externalID": null
+"templateID": "1a63d26d-b334-4de8-81e2-69dd648e66c8"
+"infrastructureProfileID": "d42e3ecd-e4ad-490e-9c30-5f51c10d916d"
+"associatedVSCProfileID": "993d2fe5-491b-43de-8490-924fe00f2a25"
+"permittedAction": "ALL"
+"VLANRange": ""
+"associatedEgressQOSPolicyID": null
+} 
+{
+"children": null
+"parentType": "nsgateway"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1455286586000
+"creationDate": 1455286586000
+"name": "Port2-LAN"
+"physicalName": "port2"
+"portType": "ACCESS"
+"associatedRedundantPortID": null
+"status": "INITIALIZED"
+"userMnemonic": null
+"useUserMnemonic": false
+"description": null
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "44acc3c6-a576-4405-9822-c8c96b39803c"
+"parentID": "62ffa615-2e66-42b0-b506-c6d0e71943a2"
+"externalID": null
+"templateID": "c7aedf3b-893e-4506-8fa9-e3ada04d59ad"
+"infrastructureProfileID": "d42e3ecd-e4ad-490e-9c30-5f51c10d916d"
+"associatedVSCProfileID": null
+"permittedAction": "ALL"
+"VLANRange": "0-4094"
+"associatedEgressQOSPolicyID": null
+}  
+{
+"children": null
+"parentType": "nsgateway"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1455286586000
+"creationDate": 1455286586000
+"name": "Port3-LAN"
+"physicalName": "port3"
+"portType": "ACCESS"
+"associatedRedundantPortID": null
+"status": "INITIALIZED"
+"userMnemonic": null
+"useUserMnemonic": false
+"description": null
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "6c25d820-8126-48af-9888-0d129f99e95d"
+"parentID": "62ffa615-2e66-42b0-b506-c6d0e71943a2"
+"externalID": null
+"templateID": "5e58ff8a-bed9-4605-834f-c511f44bc56f"
+"infrastructureProfileID": "d42e3ecd-e4ad-490e-9c30-5f51c10d916d"
+"associatedVSCProfileID": null
+"permittedAction": "ALL"
+"VLANRange": "0-4094"
+"associatedEgressQOSPolicyID": null
+} 
+{
+"children": null
+"parentType": "nsgateway"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1455286586000
+"creationDate": 1455286586000
+"name": "Port4-LAN"
+"physicalName": "port4"
+"portType": "ACCESS"
+"associatedRedundantPortID": null
+"status": "INITIALIZED"
+"userMnemonic": null
+"useUserMnemonic": false
+"description": null
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "940181b9-3925-45e5-9ca5-cbf88d6740d0"
+"parentID": "62ffa615-2e66-42b0-b506-c6d0e71943a2"
+"externalID": null
+"templateID": "86b5738f-42b8-437a-b0a7-b2efdf7825a4"
+"infrastructureProfileID": "d42e3ecd-e4ad-490e-9c30-5f51c10d916d"
+"associatedVSCProfileID": null
+"permittedAction": "ALL"
+"VLANRange": "0-4094"
+"associatedEgressQOSPolicyID": null
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Get VLan ID of the NSPorts
+URL & Request type
+GET 
+https://209.91.90.135:8443/nuage/api/v3_2/nsports/6c25d820-8126-48af-9888-0d129f99e95d/vlans
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDp0ZWx1czEyMw==
+Values
+
+response
+200 OK  
+{
+"children": null
+"parentType": "nsport"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1455286586000
+"creationDate": 1455286586000
+"status": "INITIALIZED"
+"userMnemonic": null
+"useUserMnemonic": false
+"description": null
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "3725934f-535d-497b-9313-cf1de55c6f25"
+"parentID": "6c25d820-8126-48af-9888-0d129f99e95d"
+"externalID": null
+"value": 0
+"templateID": "1a3b12e0-c61c-4b28-80cc-fa1aa9a0fd3c"
+"gatewayID": "62ffa615-2e66-42b0-b506-c6d0e71943a2"
+"permittedAction": "ALL"
+"vportID": "651569a9-942f-4344-97e8-62b9ad44772b"
+"readonly": false
+"restricted": false
+"associatedEgressQOSPolicyID": null
+}
+
+
+
+
+
+
+
+
+
+
+
+
+4. Use the Vlan ID to create Bridge Vports
+URL & Request type
+POST
+https://209.91.90.135:8443/nuage/api/v3_2/enterprises/f2dcec7d-1e2b-4b92-b714-a6c3c63c1b3a/domaintemplates
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDo4ZWY3ZGNmYy0xMTAwLTQ5ZDQtOWFkOS0zN2FjMTg2MGZjMzI=
+Content-Type: application/json
+Values
+{	
+"active" : null,
+"addressSpoofing":"ENABLED",
+"associated_floating_ip_id" : null,
+"associated_multicast_channel_map_id" : null,
+"description" : "New Port",
+"domain_id" : null,
+"has_attached_interfaces" : null,
+"multi_nic_vport_id" : null,
+"multicast" : null,
+"name" : "NewPort",
+"operational_state" : null,
+"send_multi_cast_channel_map_id" : null,
+"system_type" : null,
+"type" : "BRIDGE",
+"VLANID" : "3725934f-535d-497b-9313-cf1de55c6f25",
+"zone_id" : null
+}
+response
+201: Created
+{
+"children": null
+"parentType": "subnet"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1455983960622
+"creationDate": 1455983960622
+"name": "NewPort"
+"description": " New Port"
+"type": "BRIDGE"
+"systemType": "SOFTWARE"
+"addressSpoofing": "ENABLED"
+"active": false
+"operationalState": "INIT"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "651569a9-942f-4344-97e8-62b9ad44772b"
+"parentID": "c6d7d64c-3575-4ed2-984b-53977b9cae68"
+"externalID": null
+"domainID": "e55e79d8-4207-4910-8d53-6d5dc3d08142"
+"zoneID": "58f4306b-8ede-4b09-a5ff-f0e938acfdef"
+"multiNICVPortID": null
+"VLANID": "3725934f-535d-497b-9313-cf1de55c6f25"
+"associatedFloatingIPID": null
+"hasAttachedInterfaces": false
+"multicast": "INHERITED"
+"associatedMulticastChannelMapID": null
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Add Bridge Interface
+1. Authenticate and get the API key
+2. Get enterprise ID and corresponding domain ID, then get the zone ID, subnet ID, and the Vport ID
+3. Add Bridge Interface
+URL & Request type
+POST
+https://209.91.90.135:8443/nuage/api/v3_2/vports/651569a9-942f-4344-97e8-62b9ad44772b/bridgeinterfaces
+Headers
+X-Nuage-Organization: csp
+Authorization: XREST Y3Nwcm9vdDo4ZWY3ZGNmYy0xMTAwLTQ5ZDQtOWFkOS0zN2FjMTg2MGZjMzI=
+Content-Type: application/json
+Values
+{
+"associatedFloatingIPAddress" : null,
+"attachedNetworkID" : null,
+"attachedNetworkType" : null,
+"domainID" : null,
+"domainName" : null,
+"gateway" : null,
+"name" : "BridgeInterface",
+"netmask" : null,
+"networkName" : null,
+"policyDecisionID" : null,
+"tierID" : null,
+"VPortID" : null,
+"VPortName" : null,
+"zoneID" : null,
+"zoneName" : null
+}
+response
+201: Created
+{
+"children": null
+"parentType": "vport"
+"entityScope": "ENTERPRISE"
+"lastUpdatedBy": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"lastUpdatedDate": 1456172564177
+"creationDate": 1456172564177
+"name": "BridgeInterface"
+"policyDecisionID": "eeb313ba-db30-46a7-bdcf-0f9cffacfd51"
+"domainName": "Grace_L3D1"
+"zoneName": "Zone Template 0"
+"attachedNetworkType": "SUBNET"
+"netmask": "255.255.255.0"
+"gateway": "10.1.1.1"
+"networkName": "subnet1"
+"owner": "8a6f0e20-a4db-4878-ad84-9cc61756cd5e"
+"ID": "113c2572-ae75-4e4c-a176-7ff6ae0b7697"
+"parentID": "651569a9-942f-4344-97e8-62b9ad44772b"
+"externalID": null
+"associatedFloatingIPAddress": null
+"domainID": "e55e79d8-4207-4910-8d53-6d5dc3d08142"
+"attachedNetworkID": "c6d7d64c-3575-4ed2-984b-53977b9cae68"
+"zoneID": "58f4306b-8ede-4b09-a5ff-f0e938acfdef"
+"VPortID": "651569a9-942f-4344-97e8-62b9ad44772b"
+"tierID": null
+"VPortName": "NewPort"
+}
+
